@@ -20,7 +20,7 @@ namespace API.Helpers
             } 
             else 
             {
-                var userId = resultContext.HttpContext.User.GetId();
+                var userId = resultContext.HttpContext.User.GetUserId();
                 var repo = resultContext.HttpContext.RequestServices.GetService<IUserRepository>();
 
                 var user = await repo.GetUserByIdAsync(userId);
