@@ -39,7 +39,7 @@ namespace API.Controllers
             // If the user didn't specify what gender they're looking for, use the opposite gender
             if (string.IsNullOrEmpty(userParams.Gender)) 
             {
-                userParams.Gender = user.Gender == "male" ? "female" : user.Gender;
+                userParams.Gender = user.Gender == "male" ? "female" : user.Gender ?? "male"; //Default
             }
             
             var users = await _userRepository.GetMembersAsync(userParams);
