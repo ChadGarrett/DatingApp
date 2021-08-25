@@ -2,6 +2,7 @@ using API.Data;
 using API.Helpers;
 using API.Interfaces;
 using API.Services;
+using API.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,8 @@ namespace API.Extension
             services.AddScoped<IMessageRepository, MessageRepository>();
 
             services.AddScoped<LogUserActivity>();
+
+            services.AddSingleton<PresenceTracker>();
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
