@@ -1,9 +1,16 @@
 <div class="row" *ngIf="member">
     <div class="col-2" *ngFor="let photo of member.photos">
-        <img src="{{photo.url}}" alt="{{ photo.url }}" class="img-thumbnail p-1">
+        <img 
+            src="{{photo.url}}" 
+            alt="{{ photo.url }}" 
+            class="img-thumbnail p-1"
+            [ngClass]='photo.isApproved ? "" : "unapproved-photo"'>
+
+        <div *ngIf="!photo.isApproved"><span class="text text-danger">Photo is not approved yet.</span></div>
+
         <div class="btn-group d-flex">
             <button class="btn btn-sm" 
-                [disabled]="photo.isMain" 
+                [disabled]="photo.isMain || !photo.isApproved" 
                 (click)="setMainPhoto(photo)"
                 [ngClass]='photo.isMain ? "btn-info active" : "btn-outline-info"'>
                 Main

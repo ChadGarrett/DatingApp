@@ -53,12 +53,12 @@ export class MembersService {
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
-    return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http)
-    .pipe(map(response => {
+    return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http).pipe(
+      map(response => {
         this.memberCache.set(key, response);
         return response;
       })
-    )
+    );
   }
 
   getMember(username: string): Observable<Member> {
